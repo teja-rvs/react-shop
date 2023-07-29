@@ -36,16 +36,16 @@ const ProductComponent = () => {
                     <p className="h3">{ data.brand } { data.title }</p>
                     <p className="h6 d-flex">
                         Ratings:
-                        <div className="text-success" >
+                        <span className="text-success" >
                             { data.rating }
-                        </div>
+                        </span>
                         / 5
                     </p>
                     <Container className="d-flex">
                         <p className="h2">${ data.price }</p>
-                        <div className="mt-auto">
+                        <span className="mt-auto">
                             <p className="h6 p-3 text-success">{ Math.round(data.discountPercentage) }% off</p>
-                        </div>
+                        </span>
                     </Container>
                     <p>{ data.description }</p>
                     <Button onClick={() => dispatcher(addToCart(data))}>

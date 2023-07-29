@@ -7,7 +7,6 @@ export const updateCart = createSlice({
     },
     reducers: {
         addToCart: (state, action) => {
-
             const index = state.items.findIndex((item) => item.product.id === action.payload.id)
             if(index !== -1){
                 state.items[index].count += 1;
@@ -21,7 +20,7 @@ export const updateCart = createSlice({
             }
         },
         removeFromCart: (state, action) => {
-            state.items = state.items.filter((item) => item.id !== action.payload.id)
+            state.items = state.items.filter((item) => item.product.id !== action.payload.id)
         },
         clearCart: (state) => {
             state.items = []

@@ -1,11 +1,12 @@
 import Container from "react-bootstrap/Container";
-import {Button, ListGroup, Table} from "react-bootstrap";
-import {useDispatch, useSelector} from "react-redux";
-import {removeFromCart, clearCart} from "../redux/updateCart";
+import {Button, Table} from "react-bootstrap";
+import {useDispatch} from "react-redux";
+import {removeFromCart} from "../redux/updateCart";
 
-const CartComponent = () => {
+const CartComponent = ({ items }) => {
 
-    const items = useSelector((state) => state.updateCart.items);
+    console.log(items.length);
+
     const dispatcher = useDispatch();
 
     if(items.length === 0){
@@ -31,7 +32,7 @@ const CartComponent = () => {
             <tbody>
             {
                 items.map((item) => (
-                    <tr>
+                    <tr key={ item.product.id }>
                         <td>{ item.product.title }</td>
                         <td>$ { item.product.price }</td>
                         <td className="text-center">{ item.count }</td>
@@ -40,7 +41,7 @@ const CartComponent = () => {
                             <Button
                                 variant="outline-danger"
                                 size="sm"
-                                onClick={() => dispatcher(removeFromCart(item))}
+                                onClick={() => dispatcher(removeFromCart(item.product))}
                             >
                                 X
                             </Button>
