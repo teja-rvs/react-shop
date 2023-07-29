@@ -2,10 +2,12 @@ import dataFetchingComponent from "../components/dataFetchingComponent";
 import LoadingComponent from "./loadingComponent";
 import ErrorComponent from "./errorComponent";
 import Container from "react-bootstrap/Container";
+import ProductCatalogIndexComponent from "./productCatalogIndexComponent";
 
-const productCatalogIndex = () => {
+const productCatalogSectionComponent = () => {
 
     const { data, isLoading, error } = dataFetchingComponent("products/categories");
+    const slicedData = data.slice(0,3);
 
     if (isLoading) {
         return <LoadingComponent />
@@ -26,12 +28,12 @@ const productCatalogIndex = () => {
     return (
         <div>
             {
-                data.map((item) => (
-                    <h1>{item}</h1>
+                slicedData.map((item) => (
+                    <ProductCatalogIndexComponent category={item} key={item} />
                 ))
             }
         </div>
     )
 }
 
-export default productCatalogIndex;
+export default productCatalogSectionComponent;
